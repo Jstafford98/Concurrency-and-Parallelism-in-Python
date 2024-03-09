@@ -43,8 +43,10 @@ def pi_monte_carlo(domain : int) -> float :
     
     pi = _pi(circle_points, square_points)
 
-    print(f'Pi [Estimated]: {pi:.5f}')
-    print(f'Pi [Actual] : {math.pi:.5f}')
+    # print(f'Pi [Estimated]: {pi:.5f}')
+    # print(f'Pi [Actual] : {math.pi:.5f}')
+
+    return pi
 
 if __name__ == '__main__' :
     pi_monte_carlo(domain=100)

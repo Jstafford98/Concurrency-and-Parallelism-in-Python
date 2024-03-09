@@ -3,7 +3,7 @@
 import time
 import math
 from functools import wraps
-from typing import Callable, Literal
+from typing import Callable, Literal, Any
 
 __all__ = ['timer']
 
@@ -26,6 +26,9 @@ def format_time(seconds : int) -> tuple[float, TimeUnit] :
         We can then use the scaling factor of 0-2 to determine the time unit.
     '''
 
+    if seconds <= 1:
+        return seconds, 'Seconds'
+    
     '''
         Capping the time level to 2 accounts for when the total hours creeps into the 24-72 hour range.
         Without this, something like 72 hours would come out as 1.02 days due to how the division worked
@@ -58,11 +61,13 @@ def timer(func : NoneFunc) -> NoneFunc :
     '''
 
     @wraps(func)
-    def _timer(*args, **kwargs) -> None :
+    def _timer(*args, **kwargs) -> tuple[Any, tuple[float, TimeUnit]] :
         start = time.time()
-        func(*args, **kwargs)
+        result : Any = func(*args, **kwargs)
         delta, unit = format_time(time.time() - start)
-        print(f'Total time [{unit}] : {delta:.2f}')
+        # print(f'Total time [{unit}] : {delta:.2f}')
+
+        return result, (delta, unit)
 
     return _timer
 
@@ -78,6 +83,6 @@ if __name__ == '__main__':
 
         delta, unit = format_time(seconds)
 
-        print(f'Total time [{unit}] : {delta:.2f}')
+        # print(f'Total time [{unit}] : {delta:.2f}')
 
         assert delta == (24*i)

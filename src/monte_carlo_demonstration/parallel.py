@@ -64,8 +64,10 @@ def pi_monte_carlo_slow(domain : int) -> float :
 
     pi = _pi(circle_points, square_points)
 
-    print(f'Pi [Estimated]: {pi:.5f}')
-    print(f'Pi [Actual] : {math.pi:.5f}')
+    # print(f'Pi [Estimated]: {pi:.5f}')
+    # print(f'Pi [Actual] : {math.pi:.5f}')
+
+    return pi
 
 def pi_monte_carlo_fast(domain : int, batch_size : int) -> float :
 
@@ -107,6 +109,8 @@ def pi_monte_carlo_fast(domain : int, batch_size : int) -> float :
     
     pi = _pi(circle_points, square_points)
 
-    print(f'Pi [Estimated]: {pi:.5f}')
-    print(f'Pi [Actual] : {math.pi:.5f}')
+    # print(f'Pi [Estimated]: {pi:.5f}')
+    # print(f'Pi [Actual] : {math.pi:.5f}')
+
+    return pi
 
