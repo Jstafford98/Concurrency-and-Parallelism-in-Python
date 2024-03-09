@@ -27,6 +27,7 @@ def format_time(seconds : int) -> tuple[float, TimeUnit] :
     '''
 
     if seconds <= 1:
+        ''' We can get an invalid exponent if we don't do this check '''
         return seconds, 'Seconds'
     
     '''
