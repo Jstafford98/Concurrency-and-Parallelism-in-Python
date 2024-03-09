@@ -103,4 +103,20 @@ We defined Parallelism as when two threads are making progress at the same time.
 
 ## Understanding Parallelism and Concurrency in Python
 
+Now that we have the foundational understanding of computer architecture and software concepts needed to understand Concurreny and Parallelism, let's talk about some Python specific implementation details.
+
+### Quick Python Introduction
+
+Since Python is an interpreted language that is mainly built in C (unless you're using a different implementation), your code is read and converted to instructions for the CPU when you run the code. 
+
+This is in contrast to interpreted languages, such as C/C++, which are compiled. Meaning you must build them as computer instructions before you run them.
+
+In the context of Python, the Global Interpreter, which handles the conversion of Python code to byte code which can be processed by the CPU, is a crucial factor in Concurrency and Parallelism.
+
 ### The Global Interpreter Lock (GIL)
+
+The Global Interpreter must be thread-safe. When we implement concurrency and/or parallelism in our program, we can run into various synchronization issues that can lead to unexpected and invalid behavior. 
+
+As a solution to this, Python uses something called the Global Interpreter Lock (GIL). The GIL restricts true parallelism through threads in Python as it only allows one thread to have it's code interpreted as byte code and executed at a time. This is done using a Lock, which is known as a synchronization primitive. We'll cover this later. At the moment, all you need to understand is that a lock only allows one thread or process to acquire and use it at a time. 
+
+The reason this prevents parallelism through threads is that each Python program in a process is given a single GIL. The upside of this is that we can still achieve true parallelism through the use of multiprocessing, the use of multiple processes. 
